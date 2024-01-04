@@ -20,17 +20,17 @@ app.use(function(req, res, next) {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.post('/addChat',addChat);
-app.get('/getChat',getChat);// pass chat name in query parameter i.e. /getChat?name="count0"
-app.get('/getAllChats',getAllChats);
-app.put('/updateChat',updateChat);
-app.delete('/deleteChat',deleteChat);
+app.post('/chat',addChat);
+app.get('/chat',getChat);// pass chat name in query parameter i.e. /getChat?name="count0"
+app.get('/chats',getAllChats);
+app.put('/chat',updateChat);
+app.delete('/chat',deleteChat);
 
-app.post('/addChatInfo',addChatInfo);
-app.get('/getChatInfo',getChatInfo);// pass chat name in query parameter i.e. /getChat?name="count0"
-app.get('/getAllChatsInfo',getAllChatsInfo);
-app.put('/updateChatInfo',updateChatInfo);
-app.delete('/deleteChatInfo',deleteChatInfo);
+app.post('/chatInfo',addChatInfo);
+app.get('/chatInfo',getChatInfo);// pass chat name in query parameter i.e. /getChat?name="count0"
+app.get('/chatsInfo',getAllChatsInfo);
+app.put('/chatInfo',updateChatInfo);
+app.delete('/chatInfo',deleteChatInfo);
 
 var server=app.listen(8000, function(){
   var host = server.address().address;
