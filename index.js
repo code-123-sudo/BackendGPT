@@ -1,16 +1,12 @@
-var express=require("express");
-var bodyParser=require('body-parser');
-var cookieParser = require('cookie-parser');
-var morgan = require('morgan');
-var session = require('client-sessions');
-var formidable = require('formidable');
-var multipart = require('connect-multiparty');
-var multiparty = require('multiparty'); // https://github.com/andrewrk/node-multiparty
-global.Useremail = module.exports = "";
+import express from 'express';
+import bodyParser from 'body-parser';
+import client from './config.js';
 
-app  = express();
+import {addChat,getChat,getAllChats,updateChat,deleteChat} from './controllers/chats-controller.js';
+import {addChatInfo,getChatInfo,getAllChatsInfo,updateChatInfo,deleteChatInfo} from './controllers/chatsInfo-controller.js';
 
-app.use(multipart());
+const app  = express();
+
 app.use(function(req, res, next) {
     if (req.headers.origin) {
         res.header('Access-Control-Allow-Origin', '*')
@@ -22,34 +18,24 @@ app.use(function(req, res, next) {
 })
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
-app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
 app.use(bodyParser.json());
 
+app.post('/addChat',addChat);
+app.get('/getChat',getChat);// pass chat name in query parameter i.e. /getChat?name="count0"
+app.get('/getAllChats',getAllChats);
+app.put('/updateChat',updateChat);
+app.delete('/deleteChat',deleteChat);
 
-var loginController=require('./controllers/login-controller');
-var registerController=require('./controllers/register-controller');
-var productsController=require('./controllers/product-controller');
-var passwordController=require('./controllers/password-controller');
-var warehouseController=require('./controllers/warehouse-controller');
-/* route to handle */
-
-app.post('/api/register',registerController.register);
-app.post('/api/otp',registerController.sendOtp);
-app.post('/login',loginController.login);
-app.post('/api/addProducts',  productsController.addProducts);
-app.get('/api/fetchProducts', productsController.fetchProducts);
-app.post('/api/lostPassword',passwordController.lostPassword);
-app.post('/api/addWarehouse',warehouseController.addWarehouse);
-app.get('/api/fetchWarehouse',warehouseController.fetchWarehouse);
-
+app.post('/addChatInfo',addChatInfo);
+app.get('/getChatInfo',getChatInfo);// pass chat name in query parameter i.e. /getChat?name="count0"
+app.get('/getAllChatsInfo',getAllChatsInfo);
+app.put('/updateChatInfo',updateChatInfo);
+app.delete('/deleteChatInfo',deleteChatInfo);
 
 var server=app.listen(8000, function(){
   var host = server.address().address;
   var port = server.address().port;
-  console.log("server running at port" + port);
+  console.log("server running at port" + port + "and host " + host);
 })
 
 
