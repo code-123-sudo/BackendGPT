@@ -21,13 +21,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.post('/addChat',addChat);
-app.get('/getChat',getChat);// pass chat name in query parameter i.e. /getChat?name="count0"
+app.get('/getChat',getChat);
 app.get('/getAllChats',getAllChats);
 app.put('/updateChat',updateChat);
 app.delete('/deleteChat',deleteChat);
 
 app.post('/addChatInfo',addChatInfo);
-app.get('/getChatInfo',getChatInfo);// pass chat name in query parameter i.e. /getChat?name="count0"
+app.get('/getChatInfo',getChatInfo);
 app.get('/getAllChatsInfo',getAllChatsInfo);
 app.put('/updateChatInfo',updateChatInfo);
 app.delete('/deleteChatInfo',deleteChatInfo);
