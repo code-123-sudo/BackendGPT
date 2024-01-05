@@ -24,13 +24,12 @@ export const getChat = async (req,res) => {
     await client.db("chatGPT").command({ ping: 1 });
     let myDB = client.db("chatGPT");
     let myColl = myDB.collection("allChattings")
-    let result = await myColl.find({name:req.query.name});
+    let queryValue = req.query.name;
+    let result = await myColl.findOne({name:queryValue});
     let searchResult = []
-    for await (const doc of result) {
-      searchResult.push(doc);
-    }
+    console.log(result)
     res.json({
-      "result":searchResult
+      "result":result
     });
     await client.close();
 }
@@ -58,8 +57,12 @@ export const updateChat = async (req,res) => {
     await client.db("chatGPT").command({ ping: 1 });
     let myDB = client.db("chatGPT");
     let myColl = myDB.collection("allChattings")
-    const filter = { name: req.query.name };
-    const update = { $set: { messages: req.body.messages } };
+    let filterQueryValue = req.body.filterQueryValue;
+    let filterQueryKey = req.body.filterQueryKey;
+    let updateQueryValue = req.body.updateQueryValue;
+    let updateQueryKey = req.body.updateQueryKey;
+    const filter = { [filterQueryKey]: filterQueryValue };
+    const update = { $set: { [updateQueryKey]: updateQueryValue } };
     let result = await myColl.updateOne(filter,update);
     res.json({
       "result":result
@@ -73,9 +76,9 @@ export const deleteChat = async (req,res) => {
     await client.db("chatGPT").command({ ping: 1 });
     let myDB = client.db("chatGPT");
     let myColl = myDB.collection("allChattings")
-    let result = await myColl.findOneAndDelete({"name": req.query.name});
+    let result = await myColl.findOneAndDelete({name:req.query.name});
     res.json({
       "result":result
     });
-    await client.close();
+    await client.close()
 }

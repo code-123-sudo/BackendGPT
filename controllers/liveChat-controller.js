@@ -1,17 +1,17 @@
 import client from './../config.js';
-
+// for counter and live chat
 //create
-export const addChatInfo = async (req,res) => {
+export const addLiveChat = async (req,res) => {
     await client.connect();
     await client.db("chatGPT").command({ ping: 1 });
     let myDB = client.db("chatGPT");
-    let myColl = myDB.collection("allChattingsInfo")
-    const commState = {
-        name : req.body.name,
-        isEditing : req.body.isEditing,
-        header: req.body.header
+    let myColl = myDB.collection("liveChat")
+    const liveChatState = {
+        counter : req.body.counter,
+        liveChat: req.body.liveChat,
+        messages : req.body.messages
     }
-    let result = await myColl.insertOne(commState);
+    let result = await myColl.insertOne(liveChatState);
     res.json({
       acknowledged: result.acknowledged,
       insertedId: result.insertedId
@@ -20,30 +20,27 @@ export const addChatInfo = async (req,res) => {
 }
 
 //read
-export const getChatInfo = async (req,res) => {
+export const getLiveChat = async (req,res) => {
     await client.connect();
     await client.db("chatGPT").command({ ping: 1 });
     let myDB = client.db("chatGPT");
-    let myColl2 = myDB.collection("allChattingsInfo")
+    let myColl = myDB.collection("liveChat")
     let queryValue = req.query.name;
-    let result = await myColl2.findOne({name:queryValue});
-    // let searchResult = []
-    // for await (const doc of result) {
-    //   searchResult.push(doc);
-    // }
+    let result = await myColl.findOne({name:queryValue});
+    let searchResult = []
     console.log(result)
     res.json({
-      "results":result
+      "result":result
     });
     await client.close();
 }
 
 //read
-export const getAllChatsInfo = async (req,res) => {
+export const getAllLiveChat = async (req,res) => {
     await client.connect();
     await client.db("chatGPT").command({ ping: 1 });
     let myDB = client.db("chatGPT");
-    let myColl = myDB.collection("allChattingsInfo")
+    let myColl = myDB.collection("liveChat")
     let result = await myColl.find({});
     let searchResult = []
     for await (const doc of result) {
@@ -56,11 +53,11 @@ export const getAllChatsInfo = async (req,res) => {
 }
 
 //update
-export const updateChatInfo = async (req,res) => {
+export const updateLiveChat = async (req,res) => {
     await client.connect();
     await client.db("chatGPT").command({ ping: 1 });
     let myDB = client.db("chatGPT");
-    let myColl = myDB.collection("allChattingsInfo")
+    let myColl = myDB.collection("liveChat")
     let filterQueryValue = req.body.filterQueryValue;
     let filterQueryKey = req.body.filterQueryKey;
     let updateQueryValue = req.body.updateQueryValue;
@@ -75,14 +72,16 @@ export const updateChatInfo = async (req,res) => {
 }
 
 //delete
-export const deleteChatInfo = async (req,res) => {
+export const deleteLiveChat = async (req,res) => {
     await client.connect();
     await client.db("chatGPT").command({ ping: 1 });
     let myDB = client.db("chatGPT");
-    let myColl = myDB.collection("allChattingsInfo")
-    let result = await myColl.findOneAndDelete({name:req.query.name});
+    let myColl = myDB.collection("liveChat")
+    let filterQueryValue = req.body.filterQueryValue;
+    let filterQueryKey = req.body.filterQueryKey;
+    let result = await myColl.findOneAndDelete({[filterQueryKey]:filterQueryValue});
     res.json({
       "result":result
     });
-    await client.close();
+    await client.close()
 }
