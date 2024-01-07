@@ -2,8 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import client from './config.js';
 
-import {addChat,getChat,getAllChats,updateChat,deleteChat} from './controllers/chats-controller.js';
-import {addChatInfo,getChatInfo,getAllChatsInfo,updateChatInfo,deleteChatInfo} from './controllers/chatsInfo-controller.js';
+import {addChat,getChat,getAllChats,updateChat,updateManyChats,deleteChat} from './controllers/chats-controller.js';
 
 const app  = express();
 
@@ -24,6 +23,7 @@ app.post('/chat',addChat);
 app.get('/chat',getChat);
 app.get('/chats',getAllChats);
 app.put('/chat',updateChat);
+app.put('/chats',updateManyChats)
 app.delete('/chat',deleteChat);
 
 app.post('/chatInfo',addChatInfo);

@@ -53,15 +53,58 @@ export const updateChat = async (req,res) => {
     await client.db("chatGPT").command({ ping: 1 });
     let myDB = client.db("chatGPT");
     let myColl = myDB.collection("allChattings")
+
     let filterQueryValue = req.body.filterQueryValue;
     let filterQueryKey = req.body.filterQueryKey;
+
     let updateQueryValue1 = req.body.updateQueryValue1;
     let updateQueryKey1 = req.body.updateQueryKey1;
-    let updateQueryValue2 = req.body.updateQueryValue2;
-    let updateQueryKey2 = req.body.updateQueryKey2;
+
+    let updateQuery = {
+        updateQueryKey1:updateQueryValue1
+    }
+
+    if ( req.body.updateQueryValue2 ){
+        let updateQueryValue2 = req.body.updateQueryValue2;
+        let updateQueryKey2 = req.body.updateQueryKey2;
+        updateQuery.updateQueryKey2 = updateQueryValue2;
+    }
+
     const filter = { [filterQueryKey]: filterQueryValue };
-    const update = { $set: { [updateQueryKey1]: updateQueryValue1, [updateQueryKey2]: updateQueryValue2 } };
+    const update = { $set: updateQuery };
     let result = await myColl.updateOne(filter,update);
+    res.json({
+      "result":result
+    });
+    await client.close();
+}
+
+//update many
+export const updateManyChats = async (req,res) => {
+    await client.connect();
+    await client.db("chatGPT").command({ ping: 1 });
+    let myDB = client.db("chatGPT");
+    let myColl = myDB.collection("allChattings")
+
+    let filterQueryValue = req.body.filterQueryValue;
+    let filterQueryKey = req.body.filterQueryKey;
+
+    let updateQueryValue1 = req.body.updateQueryValue1;
+    let updateQueryKey1 = req.body.updateQueryKey1;
+
+    let updateQuery = {
+        updateQueryKey1:updateQueryValue1
+    }
+
+    if ( req.body.updateQueryValue2 ){
+        let updateQueryValue2 = req.body.updateQueryValue2;
+        let updateQueryKey2 = req.body.updateQueryKey2;
+        updateQuery.updateQueryKey2 = updateQueryValue2;
+    }
+
+    const filter = { [filterQueryKey]: filterQueryValue };
+    const update = { $set: updateQuery };
+    let result = await myColl.updateMany(filter,update);
     res.json({
       "result":result
     });
