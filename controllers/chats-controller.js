@@ -6,11 +6,7 @@ export const addChat = async (req,res) => {
     await client.db("chatGPT").command({ ping: 1 });
     let myDB = client.db("chatGPT");
     let myColl = myDB.collection("allChattings")
-    const commState = {
-        name : req.body.name,
-        messages : req.body.messages
-    }
-    let result = await myColl.insertOne(commState);
+    let result = await myColl.insertOne(req.body);
     res.json({
       acknowledged: result.acknowledged,
       insertedId: result.insertedId
@@ -40,7 +36,7 @@ export const getAllChats = async (req,res) => {
     await client.db("chatGPT").command({ ping: 1 });
     let myDB = client.db("chatGPT");
     let myColl = myDB.collection("allChattings")
-    let result = await myColl.find({});
+    let result = await myColl.find({}).sort({updatedAt:-1}) ;
     let searchResult = []
     for await (const doc of result) {
       searchResult.push(doc);
@@ -59,10 +55,12 @@ export const updateChat = async (req,res) => {
     let myColl = myDB.collection("allChattings")
     let filterQueryValue = req.body.filterQueryValue;
     let filterQueryKey = req.body.filterQueryKey;
-    let updateQueryValue = req.body.updateQueryValue;
-    let updateQueryKey = req.body.updateQueryKey;
+    let updateQueryValue1 = req.body.updateQueryValue1;
+    let updateQueryKey1 = req.body.updateQueryKey1;
+    let updateQueryValue2 = req.body.updateQueryValue2;
+    let updateQueryKey2 = req.body.updateQueryKey2;
     const filter = { [filterQueryKey]: filterQueryValue };
-    const update = { $set: { [updateQueryKey]: updateQueryValue } };
+    const update = { $set: { [updateQueryKey1]: updateQueryValue1, [updateQueryKey2]: updateQueryValue2 } };
     let result = await myColl.updateOne(filter,update);
     res.json({
       "result":result
