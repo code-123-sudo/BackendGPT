@@ -26,11 +26,6 @@ app.put('/chat',updateChat);
 app.put('/chats',updateManyChats)
 app.delete('/chat',deleteChat);
 
-app.post('/chatInfo',addChatInfo);
-app.get('/chatInfo',getChatInfo);
-app.get('/chatsInfo',getAllChatsInfo);
-app.put('/chatInfo',updateChatInfo);
-app.delete('/chatInfo',deleteChatInfo);
 
 var server=app.listen(8000, function(){
   var host = server.address().address;

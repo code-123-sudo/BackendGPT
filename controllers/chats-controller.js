@@ -60,14 +60,18 @@ export const updateChat = async (req,res) => {
     let updateQueryValue1 = req.body.updateQueryValue1;
     let updateQueryKey1 = req.body.updateQueryKey1;
 
-    let updateQuery = {
-        updateQueryKey1:updateQueryValue1
-    }
+    let updateQueryValue2 = req.body.updateQueryValue2;
+    let updateQueryKey2 = req.body.updateQueryKey2;
 
+    let updateQuery = {
+        [updateQueryKey1]:updateQueryValue1
+    }
+    console.log("=====1=======")
+    console.log(updateQuery)
     if ( req.body.updateQueryValue2 ){
-        let updateQueryValue2 = req.body.updateQueryValue2;
-        let updateQueryKey2 = req.body.updateQueryKey2;
-        updateQuery.updateQueryKey2 = updateQueryValue2;
+        updateQuery[updateQueryKey1] = updateQueryValue1;
+        updateQuery[updateQueryKey2] = updateQueryValue2
+        }
     }
 
     const filter = { [filterQueryKey]: filterQueryValue };
@@ -93,18 +97,12 @@ export const updateManyChats = async (req,res) => {
     let updateQueryKey1 = req.body.updateQueryKey1;
 
     let updateQuery = {
-        updateQueryKey1:updateQueryValue1
-    }
-
-    if ( req.body.updateQueryValue2 ){
-        let updateQueryValue2 = req.body.updateQueryValue2;
-        let updateQueryKey2 = req.body.updateQueryKey2;
-        updateQuery.updateQueryKey2 = updateQueryValue2;
+        [updateQueryKey1]:updateQueryValue1
     }
 
     const filter = { [filterQueryKey]: filterQueryValue };
     const update = { $set: updateQuery };
-    let result = await myColl.updateMany(filter,update);
+    let result = await myColl.updateMany({},update);
     res.json({
       "result":result
     });
