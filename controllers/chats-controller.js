@@ -66,12 +66,10 @@ export const updateChat = async (req,res) => {
     let updateQuery = {
         [updateQueryKey1]:updateQueryValue1
     }
-    console.log("=====1=======")
-    console.log(updateQuery)
+
     if ( req.body.updateQueryValue2 ){
         updateQuery[updateQueryKey1] = updateQueryValue1;
         updateQuery[updateQueryKey2] = updateQueryValue2
-        }
     }
 
     const filter = { [filterQueryKey]: filterQueryValue };
