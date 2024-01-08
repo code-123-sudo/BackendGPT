@@ -81,32 +81,33 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-1. Get a free API Key from openai
-2. Clone the repo
+1. Install brew in macos by following instruction at https://brew.sh/ 
+    Basically Its  below command 
    ```sh
-   git clone https://github.com/code-123-sudo/GPT.git
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
    ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. In the root directory create a new file constants.js.Enter your API key and API_URL in `constants.js` like below
-   ```js
-   export const API_KEY = 'ENTER YOUR API';
-   export const API_URL = "https://api.openai.com/v1/chat/completions";
+   If face this error - Failed to connect to raw.githubusercontent.com port 443: Connection refused
+   Follow below url (in below fix , get and replace  the actual ip address of raw.githubusercontent.com) - 
+   https://www.debugpoint.com/failed-connect-raw-githubusercontent-com-port-443/
+2. Install mongodb in macos
+   https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x/
+   For fixing below error - 
+   "Upon executing  brew services start mongodb-community@5.0  , my terminal displays  Successfully started `mongodb-community` (label: homebrew.mxcl.mongodb-community)  . However, when I utilize  brew services list  to inspect my services list, my terminal presents a different output.It presents  error  12288"
+   This is the solution - 
+   https://copyprogramming.com/howto/how-to-i-fix-mongodb-community-status-error-12288#google_vignette
+
+   https://stackoverflow.com/questions/70761645/how-to-i-fix-mongodb-community-status-error-12288
+3. Install Node and NPM from official websites
+4. ```sh
+   git clone https://github.com/code-123-sudo/BackendGPT.git
    ```
 5. start the server by running below command:
    ```sh
+   npm install
+   ```
+6. ```sh
    npm start
-   ```
-6. if face this error -
-   ```js
-   ERROR in ./node_modules/@mui/system/esm/index.js Module build failed: Error: ENOENT: no such file 
-   or  directory, open 'Jain GPT/final/node_modules/@mui/system/esm/index.js'
-   ```
-   run the following command -
-   ```sh
-   npm install @mui/system @emotion/react @emotion/styled  
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -115,7 +116,7 @@ This is an example of how to list things you need to use the software and how to
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-after installation , simply ask your question in input text box
+after installation , simply check your apis in postman, or try to see changes in database after using frontend 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -124,15 +125,9 @@ after installation , simply ask your question in input text box
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] a user can ask his/her questions from chat input for which he/she will get answer replies from open ai API
-- [ ] replies updating fast in the form of chunks as soon as they are fetched from server
-- [ ] There is a set of default questions that user may ask by simply clicking on it, their ans is saved in mock database and is cache implemented
-- [ ] A search bar to search from list of chats 
-- [ ] A user can save any chat and come back to it later and continue the chat again from where he left it earlier can thus manage multiple chats simultaneously in sidebar
-    - [ ] can edit chat heading
-    - [ ] delete chat
+- [ ] Backend contains CRUD operations(some advance operations also) on chat apis
 
-See the [open issues](https://github.com/code-123-sudo/GPT/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/code-123-sudo/BackendGPT/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
