@@ -89,7 +89,7 @@ This is an example of how to list things you need to use the software and how to
    ```
    If face this error -
 
-   Failed to connect to raw.githubusercontent.com port 443: Connection refused
+   "Failed to connect to raw.githubusercontent.com port 443: Connection refused"
 
    Follow below url (in below fix , get and replace  the actual ip address of raw.githubusercontent.com) - 
 
@@ -103,7 +103,7 @@ This is an example of how to list things you need to use the software and how to
    "Upon executing  brew services start mongodb-community@5.0  , my terminal displays  Successfully started `mongodb-community` (label: homebrew.mxcl.mongodb-community)  . However, when I utilize  brew services list  to inspect my services list, my terminal presents a different output.It presents  error  12288"
 
    This is the solution -
-    
+
    https://copyprogramming.com/howto/how-to-i-fix-mongodb-community-status-error-12288#google_vignette
 
    https://stackoverflow.com/questions/70761645/how-to-i-fix-mongodb-community-status-error-12288
