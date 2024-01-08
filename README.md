@@ -98,7 +98,14 @@ This is an example of how to list things you need to use the software and how to
    https://copyprogramming.com/howto/how-to-i-fix-mongodb-community-status-error-12288#google_vignette
 
    https://stackoverflow.com/questions/70761645/how-to-i-fix-mongodb-community-status-error-12288
-3. Install Node and NPM from official websites
+3. As we are using below code directly in backend 
+    ```js
+    let myDB = client.db("chatGPT");
+    let myColl = myDB.collection("allChattings")
+    ```
+    Before starting backend server, make database 'chatGPT' using mongo shell
+    In database 'chatGPT' make a collection 'allChattings' 
+ Install Node and NPM from official websites
 4. ```sh
    git clone https://github.com/code-123-sudo/BackendGPT.git
    ```
