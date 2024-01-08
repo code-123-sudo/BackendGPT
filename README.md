@@ -173,7 +173,7 @@ Don't forget to give the project a star! Thanks again!
 
 Shishir Jain
 
-Project Link: [https://github.com/code-123-sudo/GPTBackend](https://github.com/code-123-sudo/GPTBackend)
+Project Link: [https://github.com/code-123-sudo/GPTBackend](https://github.com/code-123-sudo/BackendGPT)
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
