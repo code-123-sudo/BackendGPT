@@ -112,10 +112,10 @@ This is an example of how to list things you need to use the software and how to
     let myDB = client.db("chatGPT");
     let myColl = myDB.collection("allChattings")
     ```
-    Before starting backend server, make database 'chatGPT' using mongo shell
-    In database 'chatGPT' make a collection 'allChattings' 
- Install Node and NPM from official websites
-4. ```sh
+    Before starting backend server, make database 'chatGPT' using mongo shell.
+    In database 'chatGPT' make a collection 'allChattings'. 
+4. Install Node and NPM from official websites
+   ```sh
    git clone https://github.com/code-123-sudo/BackendGPT.git
    ```
 5. Install the npm packages:
