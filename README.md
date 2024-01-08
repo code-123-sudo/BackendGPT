@@ -104,7 +104,7 @@ This is an example of how to list things you need to use the software and how to
    ```
 5. Install the npm packages:
    ```sh
-   npm install.js
+   npm install
    ```
 6. start the server by running below command in the proper backend directory:
    ```sh
