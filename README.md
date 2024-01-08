@@ -102,12 +102,9 @@ This is an example of how to list things you need to use the software and how to
 4. ```sh
    git clone https://github.com/code-123-sudo/BackendGPT.git
    ```
-5. start the server by running below command:
+5. start the server by running below command in the proper backend directory:
    ```sh
-   npm install
-   ```
-6. ```sh
-   npm start
+   node index.js
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
